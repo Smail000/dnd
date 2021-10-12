@@ -26,8 +26,8 @@ class Creature {
 
         this.baseDamage = 20
 
-        this.criticalHitChance = 0.05
-        this.missChance = 0.5
+        this.criticalHitChance = 0.2
+        this.missChance = 0.1
     }
 
     tick () {
@@ -42,19 +42,18 @@ class Creature {
         return 100*(1-this.missChance) > randint(0, 100)
     }
 
-    attack (enemy) {
+    attack (enemy, attacker, log=false) {
         if (this.isHit) {
             if (this.isCriticalHit) {
-                console.log('Вы попали по существу '+enemy.name+' критическим ударом и \nнанесли '+this.baseDamage*2+' единиц урона')
+                if (log) {console.log(attacker.name+' попал по существу '+enemy.name+' критическим ударом и \nнанесли '+this.baseDamage*2+' единиц урона')}
                 enemy.health -= this.baseDamage*2
-                enemy.protect()
             } else {
-                console.log('Вы попали по существу '+enemy.name+' обычным ударом и \nнанесли '+this.baseDamage+' единиц урона')
+                if (log) {console.log(attacker.name+' попал по существу '+enemy.name+' обычным ударом и \nнанесли '+this.baseDamage+' единиц урона')}
                 enemy.health -= this.baseDamage
-                enemy.protect()
             }
+            enemy.protect()
         } else {
-            console.log('Промах')
+            if (log) {console.log('Промах')}
         }
     }
 
@@ -78,7 +77,7 @@ class Zombie extends Creature {
             'AAAAAA!',
         ]
 
-        this.maxHealth = 200
+        this.maxHealth = 100
         this.health = this.maxHealth
 
         this.maxMana = 0

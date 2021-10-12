@@ -1,5 +1,5 @@
 
-const { Creature } = require('./creatures.js')
+const { Creature, Zombie } = require('./creatures.js')
 
 
 const Data = {
@@ -211,8 +211,10 @@ class Character extends Creature{
             accessory2: this.nothing,
         }
 
-        this.team = []
+        this.team = [this, new Zombie()]
         this.teamLimit = 2
+
+        this.baseDamage = 100
     }
 
     // attack (enemy) {

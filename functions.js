@@ -18,12 +18,12 @@ function input (arg) {
 }
 
 function clear () {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 30; i++) {
         console.log()
     }
 }
 
-function joinLine (lenth, args=[], ids=[]) {
+function joinLine (lenth=19, args=[], ids=[]) {
     let split = Math.floor(lenth / (args.length+1))
     let line = ''
     let indexes = []
@@ -36,7 +36,7 @@ function joinLine (lenth, args=[], ids=[]) {
     line += ' '.repeat(split)
 
     id = 0
-    for (index of indexes) {
+    for (let index of indexes) {
         if (ids.includes(id)) {
             line = line.split('')
             line[index-1] = '['
